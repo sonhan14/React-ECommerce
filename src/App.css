@@ -96,3 +96,19 @@ h1 {
 .loginbtn {
   text-align: center;
 }
+
+.label-center {
+  display: flex;
+  justify-content: center;
+}
+
+.aboutDiv {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  margin-left: auto;
+  margin-right: auto;
+}

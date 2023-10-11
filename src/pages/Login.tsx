@@ -21,9 +21,14 @@ const LoginPage = () => {
             <hr />
             <div className="row my-4 h-100">
                 <div>
-                    <Form>
+                    <Form 
+                        name="basic"
+                        style={{ minWidth: 400 }}
+                        labelCol={{ span: 10 }}
+                        >
                         <Form.Item
-                            label="Email address"
+                            
+                            label="Email address "
                             name="email"
                             rules={[
                                 {
@@ -35,6 +40,7 @@ const LoginPage = () => {
                             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </Form.Item>
                         <Form.Item
+                            
                             label="Password"
                             name="password"
                             rules={[
@@ -46,7 +52,7 @@ const LoginPage = () => {
                         >
                             <Input.Password value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </Form.Item>
-                        <Form.Item>
+                        <Form.Item wrapperCol={{ offset: 10, }}>
                             <p>
                                 New Here?{" "}
                                 <Link to="/register">

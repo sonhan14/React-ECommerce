@@ -8,6 +8,7 @@ import ServicesPage from './pages/Servicespage';
 import BlogPage from './pages/Blogpage';
 import LoginPage from './pages/Login';
 import Register from './pages/Register';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path='/about' element={<AboutPage />} />
       </Routes>
     </BrowserRouter>
   );
