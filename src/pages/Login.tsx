@@ -22,6 +22,7 @@ const LoginPage = () => {
             <div className="row my-4 h-100">
                 <div>
                     <Form 
+                    layout="vertical"
                         name="basic"
                         style={{ minWidth: 400 }}
                         labelCol={{ span: 10 }}
@@ -52,7 +53,7 @@ const LoginPage = () => {
                         >
                             <Input.Password value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </Form.Item>
-                        <Form.Item wrapperCol={{ offset: 10, }}>
+                        <Form.Item>
                             <p>
                                 New Here?{" "}
                                 <Link to="/register">

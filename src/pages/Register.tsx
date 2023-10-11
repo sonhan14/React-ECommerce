@@ -23,7 +23,7 @@ const Register = () => {
                 <hr />
                 <div className="row my-4 h-100">
                     <div >
-                        <Form labelCol={{ span: 10 }}>
+                        <Form labelCol={{ span: 10 }} layout="vertical">
                             <Form.Item
                             style={{ minWidth: 400 }}
                                 label="Full Name"
@@ -61,7 +61,7 @@ const Register = () => {
                             >
                                 <Input.Password value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </Form.Item>
-                            <Form.Item wrapperCol={{ offset: 10, }}>
+                            <Form.Item>
                                 <p>Already has an account? <Link to="/login" >Login</Link> </p>
                             </Form.Item>
                             <Form.Item className="loginbtn">
