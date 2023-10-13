@@ -14,7 +14,7 @@ import Navbar from './components/NavBar';
 function App() {
   return (
     <BrowserRouter>
-      {window.location.pathname !== '/login' && window.location.pathname !== '/register' ? <Navbar /> : null}
+      <Navbar /> 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contact" element={<ContactPage />} />

@@ -8,7 +8,7 @@ const Navbar = () => {
     const menuItems = [
         {
             label: 'Home',
-            key: 'home',
+            key: '/',
             link: '/',
         },
         {
