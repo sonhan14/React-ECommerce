@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ContactPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   const handleClick = () => {
     if (email === "" || name === "") {

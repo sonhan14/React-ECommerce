@@ -9,10 +9,12 @@ import BlogPage from './pages/Blogpage';
 import LoginPage from './pages/Login';
 import Register from './pages/Register';
 import AboutPage from './pages/AboutPage';
+import Navbar from './components/NavBar';
 
 function App() {
   return (
     <BrowserRouter>
+      {window.location.pathname !== '/login' && window.location.pathname !== '/register' ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contact" element={<ContactPage />} />
