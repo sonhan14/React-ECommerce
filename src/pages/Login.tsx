@@ -16,7 +16,7 @@ const LoginPage = () => {
         navigate("/");
     };
     return (
-        <div className="container my-3 py-3">
+        <div className=" my-3 py-3">
             <h1 className="text-center">Login</h1>
             <hr />
             <div className="row my-4 h-100">
@@ -24,7 +24,7 @@ const LoginPage = () => {
                     <Form 
                     layout="vertical"
                         name="basic"
-                        style={{ minWidth: 400 }}
+                        style={{ minWidth: 500 }}
                         labelCol={{ span: 10 }}
                         >
                         <Form.Item

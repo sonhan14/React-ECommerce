@@ -37,6 +37,11 @@ const Navbar = () => {
             key: 'register',
             link: '/register',
         },
+        {
+            label: 'Cart',
+            key: 'cart',
+            link: '/cart',
+        },
     ];
 
     return (

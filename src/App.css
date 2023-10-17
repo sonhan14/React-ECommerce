@@ -68,7 +68,7 @@ h1 {
 
 .form-control {
   width: 100%;
-  max-width: 300px;
+  max-width: 500px;
 }
 
 .form-group {
@@ -103,7 +103,6 @@ h1 {
 }
 
 .aboutDiv {
-  width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -112,3 +111,4 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+

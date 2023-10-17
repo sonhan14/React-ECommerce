@@ -18,14 +18,14 @@ const Register = () => {
 
     return (
         <>
-            <div className="container my-3 py-3">
+            <div className=" my-3 py-3">
                 <h1 className="text-center">Register</h1>
                 <hr />
                 <div className="row my-4 h-100">
                     <div >
                         <Form labelCol={{ span: 10 }} layout="vertical">
                             <Form.Item
-                            style={{ minWidth: 400 }}
+                            style={{ minWidth: 500 }}
                                 label="Full Name"
                                 name="fullName"
                                 rules={[
