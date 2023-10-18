@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Col, Row, Skeleton, Layout } from "antd";
 import { Link } from "react-router-dom";
+import {Product } from "../redux/product.type";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../redux/product.reducer";
 
-// React code
-export interface IProduct {
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    category: string,
-    image: string,
-    rating: {
-        rate: number,
-        count: null
-    }
-}
+
+
 const Products = () => {
-    const [data, setData] = useState<IProduct[]>([]);
+    const [productCart, setProductCart] = useState<Product[]>([])
+    const dispatch = useDispatch()
+    const [data, setData] = useState<Product[]>([]);
     const [filter, setFilter] = useState(data);
     let componentMounted = true;
+
+
     useEffect(() => {
         const getProducts = async () => {
             const response = await fetch("https://fakestoreapi.com/products/");
@@ -41,8 +37,11 @@ const Products = () => {
         setFilter(updatedList);
     }
 
-    const addProduct = (product: IProduct) => {
-
+    const addProduct = (product: Product) => {
+        setProductCart([...productCart, product]);
+        const newProduct = {...product, quantity: 1}
+        
+        dispatch(addProducts(newProduct))
     }
 
     const ShowProducts = () => {
@@ -71,7 +70,9 @@ const Products = () => {
                             </ul>
                             <div className="card-body">
                                 <Link to={"/product/" + product.id} className="btn btn-dark m-1">Buy Now</Link>
-                                <button className="btn btn-dark m-1" onClick={() => addProduct(product)}>Add to Cart</button>
+                                <button className="btn btn-dark m-1" onClick={() => {
+                                    addProduct(product)
+                                }}>Add to Cart</button>
                             </div>
                         </div>
                     );

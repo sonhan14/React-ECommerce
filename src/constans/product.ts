@@ -1,4 +1,4 @@
-import { Cart } from "../redux/product.type";
+import {Cart} from "../redux/product.type";
 
 export const initalProductLists: Cart[] = 
 [
@@ -12,7 +12,8 @@ export const initalProductLists: Cart[] =
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    quantity: 1
     },
     {
     "id": 2,
@@ -24,7 +25,8 @@ export const initalProductLists: Cart[] =
     "rating": {
     "rate": 4.1,
     "count": 259
-    }
+    },
+    quantity: 1
     },
     {
     "id": 3,
@@ -36,7 +38,8 @@ export const initalProductLists: Cart[] =
     "rating": {
     "rate": 4.7,
     "count": 500
-    }
+    },
+    quantity: 1
     },
     {
     "id": 4,
@@ -48,6 +51,7 @@ export const initalProductLists: Cart[] =
     "rating": {
     "rate": 2.1,
     "count": 430
-    }
+    },
+    quantity: 1
     },
 ]

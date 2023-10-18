@@ -112,3 +112,7 @@ p {
   margin-right: auto;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+

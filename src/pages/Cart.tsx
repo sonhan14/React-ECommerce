@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { Button, Card, Col, ConfigProvider, Image, Layout, List, Row, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 
+export const height = window.innerHeight
+export const width = window.innerWidth
+
 const Cart = () => {
 
     const cart = useSelector((state: RootState) => state.cart.cart)
-    console.log(cart);
 
     const EmptyCart = () => {
         return (
@@ -41,11 +43,11 @@ const Cart = () => {
         let shipping = 30.0;
         let totalItems = 0;
         cart.map((item) => {
-            return (subtotal += item.price);
+            return (subtotal += item.price * item.quantity);
         });
 
         cart.map((item) => {
-            return (totalItems);
+            return (totalItems += item.quantity);
         });
         return (
             <>
@@ -55,7 +57,7 @@ const Cart = () => {
 
                     >
                         <List
-                            style={{ width: '65%' }}
+                            style={{ width: '65%', height: height * 0.6, overflow: 'auto' }}
                             header={<div style={{ fontWeight: 700, fontSize: 20, }}>Item List</div>}
                             itemLayout="horizontal"
                             bordered
@@ -67,10 +69,10 @@ const Cart = () => {
                                     <div style={{ width: '30%', marginLeft: 10, }}>
                                         <div style={{ display: 'flex', textAlign: 'center', alignItems: 'center' }}>
                                             <Button style={{ fontWeight: 700, }}>-</Button>
-                                            <p style={{ marginLeft: 'auto', marginRight: 'auto' }}>5</p>
+                                            <p style={{ marginLeft: 'auto', marginRight: 'auto' }}>{item.quantity}</p>
                                             <Button style={{ fontWeight: 700 }}>+</Button>
                                         </div>
-                                        <p style={{ textAlign: 'center', fontWeight: 700 }}>5  x {item.price}</p>
+                                        <p style={{ textAlign: 'center', fontWeight: 700 }}>{item.quantity} x {item.price}</p>
                                     </div>
                                 </List.Item>
                             )}
@@ -94,16 +96,16 @@ const Cart = () => {
                                 <List.Item>
                                     <div style={{padding: 10,  width: '100%'}}>
                                         <div style={{display: 'flex',}}>
-                                            <p style={{width: '60%'}}>Product ()</p>
-                                            <p>1</p>
+                                            <p style={{width: '60%'}}>Product ({totalItems})</p>
+                                            <p>${Math.round(subtotal)}</p>
                                         </div>
                                         <div style={{display: 'flex'}}>
                                             <p style={{width: '60%'}}>Shipping</p>
-                                            <p>2</p>
+                                            <p>${shipping}</p>
                                         </div>
                                         <div style={{display: 'flex'}}>
                                             <p style={{width: '60%', fontWeight: 700}}>Total amount</p>
-                                            <p>4</p>
+                                            <p>${Math.round(subtotal + shipping)}</p>
                                         </div>
                                         <Button style={{backgroundColor: '#55cbf2', width: '100%', fontWeight: 700}}>Go to checkout</Button>
                                     </div>
