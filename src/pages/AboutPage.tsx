@@ -5,10 +5,10 @@ import { Layout, Row, Col, Card } from "antd";
 const AboutPage = () => {
     return (
         <Layout.Content>
+            <h1 className="text-center">About Us</h1>
+            <hr />
+            <div className="container">
 
-            <div className="">
-                <h1 className="text-center">About Us</h1>
-                <hr />
                 <p className="lead text-center aboutDiv">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                     facere doloremque veritatis odit similique sequi. Odit amet fuga nam
@@ -27,38 +27,38 @@ const AboutPage = () => {
 
                 <h2 className="text-center py-4 aboutDiv">Our Products</h2>
                 <div className="aboutDiv">
-                <Row gutter={[16, 16]}>
-                    <Col span={6}>
-                        <Card
-                            hoverable
-                            cover={<img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
-                            title="Mens's Clothing"
-                        />
-                    </Col>
-                    <Col span={6}>
-                        <Card
-                            hoverable
-                            cover={<img src="https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
-                            title="Women's Clothing"
-                        />
-                    </Col>
-                    <Col span={6}>
-                        <Card
-                            hoverable
-                            cover={<img src="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
-                            title="Jewelery"
-                        />
-                    </Col>
-                    <Col span={6}>
-                        <Card
-                            hoverable
-                            cover={<img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
-                            title="Electronics"
-                        />
-                    </Col>
-                </Row>
+                    <Row gutter={[16, 16]}>
+                        <Col span={6}>
+                            <Card
+                                hoverable
+                                cover={<img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
+                                title="Mens's Clothing"
+                            />
+                        </Col>
+                        <Col span={6}>
+                            <Card
+                                hoverable
+                                cover={<img src="https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
+                                title="Women's Clothing"
+                            />
+                        </Col>
+                        <Col span={6}>
+                            <Card
+                                hoverable
+                                cover={<img src="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
+                                title="Jewelery"
+                            />
+                        </Col>
+                        <Col span={6}>
+                            <Card
+                                hoverable
+                                cover={<img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" height={160} />}
+                                title="Electronics"
+                            />
+                        </Col>
+                    </Row>
                 </div>
-                
+
             </div>
 
         </Layout.Content>

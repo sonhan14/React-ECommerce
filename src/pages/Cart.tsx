@@ -3,7 +3,7 @@ import { RootState } from "../redux/store"
 import { Link } from "react-router-dom";
 import { Button, Card, Col, ConfigProvider, Image, Layout, List, Row, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { Cart, Product } from "../redux/product.type";
+import { Cart } from "../redux/product.type";
 import { addProducts, deleteProducts } from "../redux/product.reducer";
 
 export const height = window.innerHeight
@@ -40,9 +40,8 @@ const CartPage = () => {
         },
     };
 
-    const addProduct = (product: Product) => {
-        const newProduct = {...product, quantity: 1}
-        dispatch(addProducts(newProduct))
+    const addProduct = (product: Cart) => {
+        dispatch(addProducts(product))
     }
 
     const deleteP = (product: Cart) => {

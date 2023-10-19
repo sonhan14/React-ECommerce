@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, Col, Row, Skeleton, Layout } from "antd";
 import { Link } from "react-router-dom";
-import {Product } from "../redux/product.type";
 import { useDispatch } from "react-redux";
 import { addProducts } from "../redux/product.reducer";
+import { Cart } from "../redux/product.type";
 
 
 
 const Products = () => {
-    const [productCart, setProductCart] = useState<Product[]>([])
     const dispatch = useDispatch()
-    const [data, setData] = useState<Product[]>([]);
+    const [data, setData] = useState<Cart[]>([]);
     const [filter, setFilter] = useState(data);
     let componentMounted = true;
 
@@ -37,7 +36,7 @@ const Products = () => {
         setFilter(updatedList);
     }
 
-    const addProduct = (product: Product) => {
+    const addProduct = (product: Cart) => {
         const newProduct = {...product, quantity: 1}
         dispatch(addProducts(newProduct))
     }

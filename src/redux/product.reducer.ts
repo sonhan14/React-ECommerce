@@ -11,21 +11,17 @@ const initalState: productState = {
     cart: initalProductLists
 }
 
-export const addProducts = createAction<Cart>('product/addProducts')
+export const addProducts = createAction<Cart>('product/addProducts',)
 
 export const deleteProducts = createAction<Cart>('product/deleteProducts')
 
 const productReducer = createReducer(initalState, (builder) => {
     builder.addCase(addProducts, (state, action) => {
         const add = action.payload
-        const exist = state.cart.find((p) => p.id === add.id)
 
-        const newState = state.cart.map((item) => {
-            if (item.id === add.id) {
-                return { ...item, quantity: item.quantity + 1 }
-            }
-            return item
-        })
+        const newState = state.cart.map((item) =>
+            item.id === add.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
         if (!newState.some((item) => item.id === add.id)) {
             newState.push(add)
         }
@@ -43,7 +39,7 @@ const productReducer = createReducer(initalState, (builder) => {
 
         state.cart = newState
 
-    })
+    }).addDefaultCase((state, action) => {})
 })
 
 export default productReducer
