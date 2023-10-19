@@ -1,4 +1,4 @@
-import {createAction, createReducer} from '@reduxjs/toolkit'
+import { createAction, createReducer } from '@reduxjs/toolkit'
 import { Cart } from './product.type'
 import { initalProductLists } from '../constans/product'
 
@@ -13,31 +13,36 @@ const initalState: productState = {
 
 export const addProducts = createAction<Cart>('product/addProducts')
 
+export const deleteProducts = createAction<Cart>('product/deleteProducts')
+
 const productReducer = createReducer(initalState, (builder) => {
     builder.addCase(addProducts, (state, action) => {
         const add = action.payload
         const exist = state.cart.find((p) => p.id === add.id)
 
         const newState = state.cart.map((item) => {
-            if(item.id === add.id) {
-                return {...item, quantity: item.quantity + 1}
+            if (item.id === add.id) {
+                return { ...item, quantity: item.quantity + 1 }
             }
             return item
         })
-
-        if(!newState.some((item) => item.id === add.id)) {
+        if (!newState.some((item) => item.id === add.id)) {
             newState.push(add)
         }
+        state.cart = newState
+
+    }).addCase(deleteProducts, (state, action) => {
+        const deleteProduct = action.payload
+
+        const newState = state.cart.map((item) =>
+            item.id === deleteProduct.id && item.quantity > 0
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+        ).filter((item) => item.quantity > 0);
+
 
         state.cart = newState
 
-        // if(exist){
-        //     state.cart.map((p) => p.id === add.id ? {...p, quantity: p.quantity + 1} : p)
-        // }
-        // else{
-        //     state.cart.push(add)
-        // }
-        
     })
 })
 

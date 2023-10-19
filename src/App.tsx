@@ -10,7 +10,8 @@ import LoginPage from './pages/Login';
 import Register from './pages/Register';
 import AboutPage from './pages/AboutPage';
 import Navbar from './components/NavBar';
-import Cart from './pages/Cart';
+import CartPage from './pages/Cart';
+
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
         <Route path='/about' element={<AboutPage />} />
-        <Route path='/cart' element={<Cart />} />
+        <Route path='/cart' element={<CartPage />} />
       </Routes>
     </BrowserRouter>
   );

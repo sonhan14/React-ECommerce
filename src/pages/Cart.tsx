@@ -1,16 +1,18 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import { Link } from "react-router-dom";
 import { Button, Card, Col, ConfigProvider, Image, Layout, List, Row, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
+import { Cart, Product } from "../redux/product.type";
+import { addProducts, deleteProducts } from "../redux/product.reducer";
 
 export const height = window.innerHeight
 export const width = window.innerWidth
 
-const Cart = () => {
+const CartPage = () => {
 
     const cart = useSelector((state: RootState) => state.cart.cart)
-
+    const dispatch = useDispatch()
     const EmptyCart = () => {
         return (
             <div style={{ maxWidth: 1140, width: '100%', padding: 15, margin: '0 auto' }}>
@@ -38,6 +40,16 @@ const Cart = () => {
         },
     };
 
+    const addProduct = (product: Product) => {
+        const newProduct = {...product, quantity: 1}
+        dispatch(addProducts(newProduct))
+    }
+
+    const deleteP = (product: Cart) => {
+        dispatch(deleteProducts(product))
+    }
+    
+
     const ShowCart = () => {
         let subtotal = 0;
         let shipping = 30.0;
@@ -57,7 +69,7 @@ const Cart = () => {
 
                     >
                         <List
-                            style={{ width: '65%', height: height * 0.6, overflow: 'auto' }}
+                            style={{ width: '65%', maxHeight: height * 0.6, overflow: 'auto' }}
                             header={<div style={{ fontWeight: 700, fontSize: 20, }}>Item List</div>}
                             itemLayout="horizontal"
                             bordered
@@ -68,9 +80,13 @@ const Cart = () => {
                                     <p style={{ fontWeight: 700, marginLeft: 50, width: '50%' }}>{item.title}</p>
                                     <div style={{ width: '30%', marginLeft: 10, }}>
                                         <div style={{ display: 'flex', textAlign: 'center', alignItems: 'center' }}>
-                                            <Button style={{ fontWeight: 700, }}>-</Button>
+                                            <Button style={{ fontWeight: 700, }}
+                                            onClick={() => deleteP(item)}
+                                            >-</Button>
                                             <p style={{ marginLeft: 'auto', marginRight: 'auto' }}>{item.quantity}</p>
-                                            <Button style={{ fontWeight: 700 }}>+</Button>
+                                            <Button style={{ fontWeight: 700 }}
+                                            onClick={() => addProduct(item)}
+                                            >+</Button>
                                         </div>
                                         <p style={{ textAlign: 'center', fontWeight: 700 }}>{item.quantity} x {item.price}</p>
                                     </div>
@@ -130,7 +146,7 @@ const Cart = () => {
         </div>
     )
 }
-export default Cart
+export default CartPage
 
 
 

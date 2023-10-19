@@ -38,9 +38,7 @@ const Products = () => {
     }
 
     const addProduct = (product: Product) => {
-        setProductCart([...productCart, product]);
         const newProduct = {...product, quantity: 1}
-        
         dispatch(addProducts(newProduct))
     }
 
