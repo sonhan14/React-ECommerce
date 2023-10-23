@@ -25,7 +25,7 @@ const ContactPage = () => {
         <div className="row my-4 h-100">
           <div>
             <Form
-            layout="vertical"
+              layout="vertical"
               name="basic"
               style={{ minWidth: 500 }}
               labelCol={{ span: 10 }}

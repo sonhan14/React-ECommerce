@@ -1,100 +1,95 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Col, Row, Skeleton, Layout } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Col, Row, Layout } from "antd";
 import { useDispatch } from "react-redux";
 import { addProducts } from "../redux/product.reducer";
-import { Cart } from "../redux/product.type";
-
-
+import { DtoProduct } from "../redux/product.type";
+import { Card } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
-    const dispatch = useDispatch()
-    const [data, setData] = useState<Cart[]>([]);
-    const [filter, setFilter] = useState(data);
-    let componentMounted = true;
+  const dispatch = useDispatch()
+  const [data, setData] = useState<DtoProduct[]>([]);
+  const [filter, setFilter] = useState(data);
+  let componentMounted = true;
+  const { Meta } = Card;
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await fetch("https://fakestoreapi.com/products/");
+      console.log(response);
+      if (componentMounted) {
+        setData(await response.clone().json());
+        setFilter(await response.json());
+      }
 
-    useEffect(() => {
-        const getProducts = async () => {
-            const response = await fetch("https://fakestoreapi.com/products/");
-            console.log(response);
-            if (componentMounted) {
-                setData(await response.clone().json());
-                setFilter(await response.json());
-            }
-
-            return () => {
-                componentMounted = false;
-            };
-        };
-
-        getProducts();
-    }, []);
-
-    const filterProduct = (cat: any) => {
-        const updatedList = data.filter((item) => item.category === cat);
-        setFilter(updatedList);
-    }
-
-    const addProduct = (product: Cart) => {
-        const newProduct = {...product, quantity: 1}
-        dispatch(addProducts(newProduct))
-    }
-
-    const ShowProducts = () => {
-        return (
-            <>
-                <div className="buttons text-center py-5">
-                    <Button type="default" size="small" onClick={() => setFilter(data)}>All</Button>
-                    <Button type="default" size="small" onClick={() => filterProduct("men's clothing")}>Men's Clothing</Button>
-                    <Button type="default" size="small" onClick={() => filterProduct("women's clothing")}>
-                        Women's Clothing
-                    </Button>
-                    <Button type="default" size="small" onClick={() => filterProduct("jewelery")}>Jewelery</Button>
-                    <Button type="default" size="small" onClick={() => filterProduct("electronics")}>Electronics</Button>
-                </div>
-
-                {filter.map((product) => {
-                    return (
-                        <div id={product.id.toString()} key={product.id} className="product-card">
-                            <img src={product.image} alt="Card" height={300} />
-                            <div className="card-body">
-                                <h5 className="card-title">{product.title}</h5>
-                                <p className="card-text">{product.description.substring(0, 90)}...</p>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item lead">$ {product.price}</li>
-                            </ul>
-                            <div className="card-body">
-                                <Link to={"/product/" + product.id} className="btn btn-dark m-1">Buy Now</Link>
-                                <button className="btn btn-dark m-1" onClick={() => {
-                                    addProduct(product)
-                                }}>Add to Cart</button>
-                            </div>
-                        </div>
-                    );
-                })}
-            </>
-        );
+      return () => {
+        componentMounted = false;
+      };
     };
 
+    getProducts();
+  }, []);
+
+  const filterProduct = (cat: any) => {
+    const updatedList = data.filter((item) => item.category === cat);
+    setFilter(updatedList);
+  }
+
+  const addProduct = (product: DtoProduct) => {
+    const newProduct = { ...product, quantity: 1 }
+    dispatch(addProducts(newProduct))
+  }
+
+  const ShowProducts = () => {
     return (
-        <>
-            <Layout.Content>
-                <Row justify="center" align="middle">
-                    <Col span={24}>
-                        <h2 className="display-5 text-center">Latest Products</h2>
-                        <hr />
-                    </Col>
-                </Row>
-                <Row justify="center" align="middle">
-                    <Col span={24}>
-                        <ShowProducts />
-                    </Col>
-                </Row>
-            </Layout.Content>
-        </>
+      <>
+        <div className="buttons text-center py-5" style={{ paddingBottom: 20 }}>
+          <Button type="default" onClick={() => setFilter(data)}>All</Button>
+          <Button type="default" onClick={() => filterProduct("men's clothing")}>Men's Clothing</Button>
+          <Button type="default" onClick={() => filterProduct("women's clothing")}>
+            Women's Clothing
+          </Button>
+          <Button type="default" onClick={() => filterProduct("jewelery")}>Jewelery</Button>
+          <Button type="default" onClick={() => filterProduct("electronics")}>Electronics</Button>
+        </div>
+
+        {filter.map((product) => {
+          return (
+            <div >
+              <Card
+                hoverable
+                style={{ width: '14.28%', marginTop: 5, float: 'left', alignItems: 'center', textAlign: 'center', maxHeight: 500}}
+                cover={<img alt="example" src={product.image} height={300} onClick={() => navigate("/product/" + product.id)} /> }
+              >
+                <Meta title={product.title} description={product.description.substring(0, 80) + "..."}/>
+                <Button style={{ margin: 5, }} type="primary" icon={<PlusOutlined />} onClick={() => { addProduct(product) }}> Add to Cart </Button>
+              </Card>
+            </div>
+          );
+        })}
+      </>
     );
+  };
+
+  return (
+    <>
+      <Layout.Content>
+        <Row justify="center" align="middle">
+          <Col span={24}>
+            <h2 className="display-5 text-center">Latest Products</h2>
+            <hr />
+          </Col>
+        </Row>
+        <Row justify="center" align="middle">
+          <Col span={24}>
+            <ShowProducts />
+          </Col>
+        </Row>
+      </Layout.Content>
+    </>
+  );
 };
 
 export default Products;

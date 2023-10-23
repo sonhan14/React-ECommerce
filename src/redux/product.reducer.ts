@@ -1,19 +1,19 @@
 import { createAction, createReducer } from '@reduxjs/toolkit'
-import { Cart } from './product.type'
+import { DtoProduct } from './product.type'
 import { initalProductLists } from '../constans/product'
 
 
 interface productState {
-    cart: Cart[]
+    cart: DtoProduct[]
 }
 
 const initalState: productState = {
     cart: initalProductLists
 }
 
-export const addProducts = createAction<Cart>('product/addProducts',)
+export const addProducts = createAction<DtoProduct>('product/addProducts',)
 
-export const deleteProducts = createAction<Cart>('product/deleteProducts')
+export const deleteProducts = createAction<DtoProduct>('product/deleteProducts')
 
 const productReducer = createReducer(initalState, (builder) => {
     builder.addCase(addProducts, (state, action) => {

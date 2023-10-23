@@ -1,6 +1,6 @@
-import {Cart} from "../redux/product.type";
+import {DtoProduct} from "../redux/product.type";
 
-export const initalProductLists: Cart[] = 
+export const initalProductLists: DtoProduct[] = 
 [
     {
     "id": 1,

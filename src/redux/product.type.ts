@@ -1,4 +1,4 @@
-export interface Cart {
+export interface DtoProduct {
     id: number,
     title: string,
     price: number,
