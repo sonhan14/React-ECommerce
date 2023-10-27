@@ -33,10 +33,10 @@ function App() {
         <Route path='/checkout' element={<CheckOut />} />
 
       </Routes>
-      <Footer className="mb-0 text-center">
+      <Footer className="mb-0 text-center" style={{backgroundColor: 'white'}}>
         <Row style={{ alignItems: 'center', textAlign: 'center' }}>
           <p className="mb-3 mb-md-0">Made with ❤️ by {" "}
-            <Link target="_blank" rel="noreferrer" to={'https://www.pokernow.club/games/pglCWXqo0Us_Ecs0y3VG9nakZ?fbclid=IwAR07fR70K8l4eF5rtiu-pShclg9Ii3Be3nIh7Ln1skNfQoqTjRoKqpuSKN8'}>Poker team</Link>
+            <Link target="_blank" rel="noreferrer" to={'https://www.pokernow.club/start-game'}>Poker team</Link>
           </p>
         </Row>
       </Footer>
