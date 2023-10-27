@@ -3,12 +3,13 @@ import { RootState } from "../redux/store"
 import { Button, ConfigProvider, Image, List } from "antd";
 import { DtoProduct } from "../redux/product.type";
 import { addProducts, deleteProducts } from "../redux/product.reducer";
+import { useNavigate } from "react-router-dom";
 
 export const height = window.innerHeight
 export const width = window.innerWidth
 
 const CartPage = () => {
-
+  const navigate = useNavigate();
   const cart = useSelector((state: RootState) => state.cart.cart)
   const dispatch = useDispatch()
   const EmptyCart = () => {
@@ -58,8 +59,18 @@ const CartPage = () => {
     cart.map((item) => {
       return (totalItems += item.quantity);
     });
+
+    
+
+
+    const goToCheckOut = () => {
+      navigate("/checkout")
+    }
+    
+
     return (
       <>
+
         <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto', display: 'flex', justifyContent: 'space-between' }}>
           <ConfigProvider
             theme={theme}
@@ -120,7 +131,7 @@ const CartPage = () => {
                       <p style={{ width: '60%', fontWeight: 700 }}>Total amount</p>
                       <p>${Math.round(subtotal + shipping)}</p>
                     </div>
-                    <Button style={{ backgroundColor: '#55cbf2', width: '100%', fontWeight: 700 }}>Go to checkout</Button>
+                    <Button onClick={goToCheckOut} style={{ backgroundColor: '#55cbf2', width: '100%', fontWeight: 700 }}>Go to checkout</Button>
                   </div>
 
                 </List.Item>

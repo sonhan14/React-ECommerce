@@ -13,6 +13,7 @@ import CartPage from './pages/Cart';
 import { Row } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import ProductDetail from './pages/ProductDetail';
+import CheckOut from './pages/checkOut/CheckOut';
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/checkout' element={<CheckOut />} />
+
       </Routes>
       <Footer className="mb-0 text-center">
         <Row style={{ alignItems: 'center', textAlign: 'center' }}>
