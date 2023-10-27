@@ -46,24 +46,24 @@ const Products = () => {
     return (
       <>
         <div className="buttons text-center py-5" style={{ paddingBottom: 20 }}>
-          <Button type="default" onClick={() => setFilter(data)}>All</Button>
-          <Button type="default" onClick={() => filterProduct("men's clothing")}>Men's Clothing</Button>
-          <Button type="default" onClick={() => filterProduct("women's clothing")}>
+          <Button type="default" onClick={() => setFilter(data)} style={{marginRight: 10}}>All</Button>
+          <Button type="default" onClick={() => filterProduct("men's clothing")} style={{marginRight: 10}}>Men's Clothing</Button>
+          <Button type="default" onClick={() => filterProduct("women's clothing")} style={{marginRight: 10}}>
             Women's Clothing
           </Button>
-          <Button type="default" onClick={() => filterProduct("jewelery")}>Jewelery</Button>
-          <Button type="default" onClick={() => filterProduct("electronics")}>Electronics</Button>
+          <Button type="default" onClick={() => filterProduct("jewelery")} style={{marginRight: 10}}>Jewelery</Button>
+          <Button type="default" onClick={() => filterProduct("electronics")} style={{marginRight: 10}}>Electronics</Button>
         </div>
 
         {filter.map((product) => {
           return (
-            <div >
+            <div style={{width: '90%', marginRight: 'auto', marginLeft: 'auto'}}>
               <Card
                 hoverable
-                style={{ width: '14.28%', marginTop: 5, float: 'left', alignItems: 'center', textAlign: 'center', maxHeight: 500}}
+                style={{ width: '14.28%', marginTop: 5, float: 'left', alignItems: 'center', textAlign: 'center', maxHeight: 1000, minHeight: 600, marginLeft: 25, marginBottom: 20}}
                 cover={<img alt="example" src={product.image} height={300} onClick={() => navigate("/product/" + product.id)} /> }
               >
-                <Meta title={product.title} description={product.description.substring(0, 80) + "..."}/>
+                <Meta style={{height: 200}} title={product.title} description={product.description.substring(0, 80) + "..."}/>
                 <Button style={{ margin: 5, }} type="primary" icon={<PlusOutlined />} onClick={() => { addProduct(product) }}> Add to Cart </Button>
               </Card>
             </div>

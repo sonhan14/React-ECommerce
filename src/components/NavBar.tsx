@@ -1,9 +1,16 @@
 import { LoginOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../redux/store';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const cart = useSelector((state: RootState) => state.cart.cart)
+  let totalItems = 0;
+  cart.map((item) => {
+    return (totalItems += item.quantity);
+  });
 
   const menuItems = [
     {
@@ -33,14 +40,14 @@ const Navbar = () => {
       link: '/register',
     },
     {
-      label: 'Cart',
+      label: 'Cart (' + totalItems + ')',
       key: 'cart',
       link: '/cart',
     },
   ];
 
   return (
-    <div className="container">
+    <div className="" style={{marginBottom: 20}}>
       <Menu
         items={menuItems}
         mode="horizontal"
